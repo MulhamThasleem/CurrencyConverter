@@ -2,16 +2,24 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-from decimal import Decimal
+import os
+import sys
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 root = Tk()
 root.title('Currency Conversion')
 
-conv_btn = PhotoImage(file='button_convert.png')
-lock_btn = PhotoImage(file='button_lock.png')
-unlock_btn = PhotoImage(file='button_unlock.png')
-clear_btn = PhotoImage(file='button_clear.png')
+conv_btn = PhotoImage(file=resource_path("button_convert.png"))
+lock_btn = PhotoImage(file=resource_path("button_lock.png"))
+unlock_btn = PhotoImage(file=resource_path("button_unlock.png"))
+clear_btn = PhotoImage(file=resource_path("button_clear.png"))
 
 s = ttk.Style()
 s.theme_create('pastel', settings={
