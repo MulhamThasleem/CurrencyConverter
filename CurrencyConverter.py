@@ -1,10 +1,21 @@
 #!/usr/bin/env python3
+from pathlib import Path
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+import platform
 import os
 import sys
+import tkinter.font as tkfont
 
+if platform.system()=='Windows':
+	import pyglet
+	pyglet.options['win32_gdi_font'] = True
+	fontpath1 = Path(__file__).parent / 'usrfont1'
+	pyglet.font.add_file(str(fontpath1))
+	fontpath2 = Path(__file__).parent / 'usrfont2'
+	pyglet.font.add_file(str(fontpath2))
+	
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS
@@ -102,11 +113,11 @@ home.pack(pady=20)
 home.configure(background='#eab676', borderwidth=0)
 
 # Home currency label
-conversion_label = Label(home, text="Your Home Currency:", font=("Ubuntu", 14), justify="center", background='#eab676')
+conversion_label = Label(home, text="Your Home Currency:", font=tkfont.Font(family='Ubuntu', size=14), justify="center", background='#eab676')
 conversion_label.pack(pady=10)
 
 # Home currency entry box
-home_entry = Entry(home, font=("Ubuntu Condensed", 24), justify="center",  bg="#f6b05b", selectbackground="#db8441", highlightbackground="#ba7330", highlightcolor="#ba7330", borderwidth=0, highlightthickness=2, disabledbackground= '#ec9552', disabledforeground="#ba7330")
+home_entry = Entry(home, font=tkfont.Font(family='Ubuntu Condensed', size=24), justify="center",  bg="#f6b05b", selectbackground="#db8441", highlightbackground="#ba7330", highlightcolor="#ba7330", borderwidth=0, highlightthickness=2, disabledbackground= '#ec9552', disabledforeground="#ba7330")
 home_entry.pack(pady=10, padx=10)
 
 # Conversion Currency Frame
@@ -115,19 +126,19 @@ conversion.pack(pady=20)
 conversion.configure(background='#eab676', borderwidth=0)
 
 # convert to label
-conversion_label = Label(conversion, text="Currency To Convert To:", font=("Ubuntu", 14),  justify="center",background='#eab676')
+conversion_label = Label(conversion, text="Currency To Convert To:", font=tkfont.Font(family='Ubuntu', size=14),  justify="center",background='#eab676')
 conversion_label.pack(pady=10)
 
 # Convert To Entry
-conversion_entry = Entry(conversion, font=("Ubuntu Condensed", 24), justify="center",  bg="#f6b05b", selectbackground="#db8441", highlightbackground="#ba7330", highlightcolor="#ba7330", borderwidth=0, highlightthickness=2, disabledbackground= '#ec9552', disabledforeground="#ba7330")
+conversion_entry = Entry(conversion, font=tkfont.Font(family='Ubuntu Condensed', size=24), justify="center",  bg="#f6b05b", selectbackground="#db8441", highlightbackground="#ba7330", highlightcolor="#ba7330", borderwidth=0, highlightthickness=2, disabledbackground= '#ec9552', disabledforeground="#ba7330")
 conversion_entry.pack(pady=10, padx=10)
 
 # rate label
-rate_label = Label(conversion, text="Current Conversion Rate:", font=("Ubuntu", 14), justify="center", background='#eab676')
+rate_label = Label(conversion, text="Current Conversion Rate:", font=tkfont.Font(family='Ubuntu', size=14), justify="center", background='#eab676')
 rate_label.pack(pady=10)
 
 # Rate To Entry
-rate_entry = Entry(conversion, font=("Ubuntu Condensed", 24), justify="center", bg="#f6b05b", selectbackground="#db8441", highlightbackground="#ba7330", highlightcolor="#ba7330", borderwidth=0, highlightthickness=2, disabledbackground= '#ec9552', disabledforeground="#ba7330")
+rate_entry = Entry(conversion, font=tkfont.Font(family='Ubuntu Condensed', size=24), justify="center", bg="#f6b05b", selectbackground="#db8441", highlightbackground="#ba7330", highlightcolor="#ba7330", borderwidth=0, highlightthickness=2, disabledbackground= '#ec9552', disabledforeground="#ba7330")
 rate_entry.pack(pady=10, padx=10)
 
 # Button Frame
@@ -176,11 +187,11 @@ amount = LabelFrame(conversion_frame,)
 amount.pack(pady=20)
 amount.configure(background='#eab676', borderwidth=0)
 
-amount_label = Label(amount, text="Amount to convert:", font=("Ubuntu", 14), justify="center", background='#eab676', borderwidth=0)
+amount_label = Label(amount, text="Amount to convert:", font=tkfont.Font(family='Ubuntu', size=14), justify="center", background='#eab676', borderwidth=0)
 amount_label.pack(pady=20)
 
 # Entry Box For Amount
-amount_entry = Entry(amount, font=("Ubuntu Condensed", 24), justify="center",  bg="#f6b05b", selectbackground="#db8441", highlightbackground="#ba7330", highlightcolor="#ba7330", borderwidth=0, highlightthickness=2)
+amount_entry = Entry(amount, font=tkfont.Font(family='Ubuntu Condensed', size=24), justify="center",  bg="#f6b05b", selectbackground="#db8441", highlightbackground="#ba7330", highlightcolor="#ba7330", borderwidth=0, highlightthickness=2)
 amount_entry.pack(pady=10, padx=10)
 
 # Conversion Currency Frame
@@ -193,11 +204,11 @@ convert_button = Button(amount, image=conv_btn, borderwidth=0, background='#eab6
 convert_button.pack(pady=20)
 
 # Equals Frame
-converted_label = Label(output, text="Converted Amount:", font=("Ubuntu", 14), justify="center", background='#eab676', borderwidth=0)
+converted_label = Label(output, text="Converted Amount:", font=tkfont.Font(family='Ubuntu', size=14), justify="center", background='#eab676', borderwidth=0)
 converted_label.pack(pady=20)
 
 # Converted entry
-converted_entry = Entry(output, font=("Ubuntu Condensed", 24), justify="center", bg="#f6b05b",  selectbackground="#f6b05b", highlightbackground="#ba7330", readonlybackground="#f6b05b", highlightcolor="#ba7330", borderwidth=0, highlightthickness=2)
+converted_entry = Entry(output, font=tkfont.Font(family='Ubuntu Condensed', size=24), justify="center", bg="#f6b05b",  selectbackground="#f6b05b", highlightbackground="#ba7330", readonlybackground="#f6b05b", highlightcolor="#ba7330", borderwidth=0, highlightthickness=2)
 converted_entry.pack(pady=10, padx=10)
 
 # Clear Button
